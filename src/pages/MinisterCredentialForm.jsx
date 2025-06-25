@@ -26,7 +26,7 @@ const MinisterCredentialForm = () => {
   };
 
   return (
-    <div className="relative bg-cover bg-center min-h-screen py-10 ">
+    <div className="relative bg-cover bg-center min-h-screen pb-10 ">
       <div
         style={{
           backgroundImage: `url(${bg})`,
@@ -67,12 +67,12 @@ const MinisterCredentialForm = () => {
       </div>
 
       <div className="bg-gray-100 flex justify-center flex-col z-20">
-        <h1 className="text-center text-black text-2xl mx-auto w-8/12 py-8">
+        <h1 className="text-center text-black text-2xl mx-auto p-2 md:p-0 md:w-8/12 py-8">
           Please Answer All Questions & Provide Requested Information.
           Incomplete Applications Will Not Be Processed.
         </h1>
 
-        <div className="w-8/12 mx-auto">
+        <div className="md:w-8/12 mx-auto">
           <Form />
         </div>
       </div>
