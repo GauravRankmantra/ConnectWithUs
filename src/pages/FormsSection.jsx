@@ -4,12 +4,20 @@ import img1 from "../assets/images/formSectionBg.jpeg"; // Main background
 import img2 from "../assets/images/card-bg.jpeg"; // Card background
 import { Link } from "react-router-dom";
 
+const formRoutes = {
+  "Associate Member": "/associate-member",
+  "Media Member": "/",
+  "Minister’s Credential": "/minister-credential",
+  "Minister’s License Renewal": "/",
+};
 const forms = [
   "Associate Member",
   "Media Member",
   "Minister’s Credential",
   "Minister’s License Renewal",
 ];
+
+
 
 const FormsSection = () => {
   const [activeForm, setActiveForm] = useState(null);
@@ -45,23 +53,19 @@ const FormsSection = () => {
               key={index}
               className="relative text-center h-[15rem] mt-2 border-t-4 border-yellow-500 shadow-md rounded overflow-hidden"
             >
-              {/* Card background with reduced opacity */}
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-[8%]"
                 style={{ backgroundImage: `url(${img2})` }}
               />
 
-              {/* Card content */}
               <div className="relative z-10 p-6 flex flex-col h-full justify-between">
                 <h3 className="font-medium text-black text-2xl">
                   {title.toUpperCase()}
                 </h3>
                 <Link
-                to={'/minister-credential'}
+                  to={formRoutes[title]} // 👈 dynamic path
                   className="text-yellow-400 hover:text-blue-950 cursor-pointer font-semibold hover:underline"
-                  
                 >
-                  
                   FILL FORM
                 </Link>
               </div>

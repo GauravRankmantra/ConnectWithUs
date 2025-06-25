@@ -52,7 +52,7 @@ function Home() {
               },
             }}
             autoplay={{
-              delay: 5000, // 5 seconds delay
+              delay: 2000, // 5 seconds delay
               disableOnInteraction: false, // Continue autoplay even after user interaction
             }}
             loop={true} // Enable looping through slides
