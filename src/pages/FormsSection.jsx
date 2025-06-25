@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import FormModal from "../components/FormModal";
 import img1 from "../assets/images/formSectionBg.jpeg"; // Main background
 import img2 from "../assets/images/card-bg.jpeg"; // Card background
+import { Link } from "react-router-dom";
 
 const forms = [
   "Associate Member",
@@ -55,12 +56,14 @@ const FormsSection = () => {
                 <h3 className="font-medium text-black text-2xl">
                   {title.toUpperCase()}
                 </h3>
-                <button
+                <Link
+                to={'/minister-credential'}
                   className="text-yellow-400 hover:text-blue-950 cursor-pointer font-semibold hover:underline"
-                  onClick={() => setActiveForm(title)}
+                  
                 >
+                  
                   FILL FORM
-                </button>
+                </Link>
               </div>
             </div>
           ))}

@@ -6,14 +6,15 @@ import tapon from "../assets/images/tapon.png";
 import kirkwood from "../assets/images/kirkwood.png";
 import aagba from "../assets/images/aagba.png";
 import reach from "../assets/images/reach-logo.png";
+import { Link } from "react-router-dom";
 
 const ministries = [
-  { img: nfocc, alt: "NFCOCC", link: "https://example.com/nfocc" },
-  { img: scriptureChurch, alt: "Scripture Church", link: "https://example.com/scripture" },
-  { img: tapon, alt: "Tapon", link: "https://example.com/tapon" },
-  { img: kirkwood, alt: "Gary Kirkwood Ministries", link: "https://example.com/kirkwood" },
-  { img: aagba, alt: "AAGBA", link: "https://example.com/aagba" },
-  { img: reach, alt: "REACH 1070 Partner", link: "https://example.com/reach" },
+  { img: nfocc, alt: "NFCOCC", link: "/form-section" },
+  { img: scriptureChurch, alt: "Scripture Church", link: "/form-section" },
+  { img: tapon, alt: "Tapon", link: "/form-section" },
+  { img: kirkwood, alt: "Gary Kirkwood Ministries", link: "/form-section" },
+  { img: aagba, alt: "AAGBA", link: "/form-section" },
+  { img: reach, alt: "REACH 1070 Partner", link: "/form-section" },
 ];
 
 const FellowshipMinistries = () => {
@@ -31,19 +32,14 @@ const FellowshipMinistries = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {ministries.map(({ img, alt, link }, index) => (
-          <a
+          <Link
             key={index}
-            href={link}
-            target="_blank"
+            to={link}
             rel="noopener noreferrer"
             className="flex items-center justify-center hover:scale-105 transition-transform"
           >
-            <img
-              src={img}
-              alt={alt}
-              className="w-48 h-48 object-contain"
-            />
-          </a>
+            <img src={img} alt={alt} className="w-48 h-48 object-contain" />
+          </Link>
         ))}
       </div>
     </section>
