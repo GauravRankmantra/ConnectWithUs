@@ -5,22 +5,20 @@ import img2 from "../assets/images/card-bg.jpeg"; // Card background
 import { Link } from "react-router-dom";
 
 const formRoutes = {
-  "Associate Member": "/associate-member",
-  "Media Member": "/",
-  "Minister’s Credential": "/minister-credential",
-  "Minister’s License Renewal": "/",
+  "CHURCH MEMBERSHIP FORM": "/church-membership-application-form",
+  "SACERDOTAL FORM": "/meeting-request-form",
+  "BENEVOLENT REQUEST FORM": "/benevolent-request-form",
+  "Event Attendance Registration Verification Form": "/event-attendance-registration-verification-form",
 };
 const forms = [
-  "Associate Member",
-  "Media Member",
-  "Minister’s Credential",
-  "Minister’s License Renewal",
+  "CHURCH MEMBERSHIP FORM",
+  "SACERDOTAL FORM",
+  "BENEVOLENT REQUEST FORM",
+  "Event Attendance Registration Verification Form",
 ];
 
+const ScriptureChurchMain = () => {
 
-
-const FormsSection = () => {
-  const [activeForm, setActiveForm] = useState(null);
 
   return (
     <div
@@ -47,7 +45,7 @@ const FormsSection = () => {
       {/* White section starts */}
       <div className="relative z-10 bg-white">
         {/* Form Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4 -mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4 -mt-20">
           {forms.map((title, index) => (
             <div
               key={index}
@@ -59,7 +57,7 @@ const FormsSection = () => {
               />
 
               <div className="relative z-10 p-6 flex flex-col h-full justify-between">
-                <h3 className="font-medium text-black text-2xl">
+                <h3 className="font-medium text-black text-xl">
                   {title.toUpperCase()}
                 </h3>
                 <Link
@@ -80,54 +78,10 @@ const FormsSection = () => {
             className="absolute inset-0 bg-cover bg-center opacity-[8%]"
             style={{ backgroundImage: `url(${img2})` }}
           />
-
-          {/* Card content */}
-          <div className="relative z-10 p-6 flex flex-col h-full justify-between">
-            <h3 className="font-medium text-black text-2xl">
-              Broadcasting Standards
-            </h3>
-            <button
-              className="text-yellow-400 hover:text-blue-950 cursor-pointer font-semibold hover:underline"
-              // onClick={() => setActiveForm(title)}
-            >
-              View More
-            </button>
-          </div>
-        </div>
-
-        {/* Pushpay Donation Section */}
-        <div className="text-center my-10">
-          <h2 className="text-xl font-semibold">PUSHPAY DONATION OPTIONS</h2>
-          <p className="uppercase mt-1">Ways to donate:</p>
-          <div className="w-12 h-1 bg-black mx-auto mt-2"></div>
-        </div>
-
-        <div className="relative w-3/12 mx-auto mt-10 text-center h-[10rem] mb-20 border-t-4 border-yellow-500 shadow-md rounded overflow-hidden">
-          {/* Card background with reduced opacity */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-[8%]"
-            style={{ backgroundImage: `url(${img2})` }}
-          />
-
-          {/* Card content */}
-          <div className="relative z-10 p-6 flex flex-col h-full justify-between">
-            <h3 className="font-medium text-black text-2xl">Pushpay Payment</h3>
-            <button
-              className="text-yellow-400 hover:text-blue-950 cursor-pointer font-semibold hover:underline"
-              // onClick={() => setActiveForm(title)}
-            >
-              Donate Now
-            </button>
-          </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {activeForm && (
-        <FormModal title={activeForm} onClose={() => setActiveForm(null)} />
-      )}
     </div>
   );
 };
 
-export default FormsSection;
+export default ScriptureChurchMain;

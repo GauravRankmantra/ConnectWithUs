@@ -10,8 +10,12 @@ import { Link } from "react-router-dom";
 
 const ministries = [
   { img: nfocc, alt: "NFCOCC", link: "/form-section" },
-  { img: scriptureChurch, alt: "Scripture Church", link: "/form-section" },
-  { img: tapon, alt: "Tapon", link: "/form-section" },
+  {
+    img: scriptureChurch,
+    alt: "Scripture Church",
+    link: "/scripture-church-form-page",
+  },
+  { img: tapon, alt: "Tapon", link: "/tapon-form-page" },
   { img: kirkwood, alt: "Gary Kirkwood Ministries", link: "/form-section" },
   { img: aagba, alt: "AAGBA", link: "/form-section" },
   { img: reach, alt: "REACH 1070 Partner", link: "/form-section" },
