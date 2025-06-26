@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 const formRoutes = {
   "BROADCASTING STANDARDS": "/tapon-radio-broadcast-standards",
-  "FCC RULES": "/meeting-request-form",
-  "MEDIA KIT": "/benevolent-request-form",
-  "RATE CARD": "/event-attendance-registration-verification-form",
-  "COVERAGE MAPS": "/benevolent-request-form",
+  "FCC RULES": "/fcc-rules-governing-radio-stations",
+  "MEDIA KIT": "/media-kit",
+  "RATE CARD": "/rate-card",
+  "COVERAGE MAPS": "/coverage-maps",
 };
 const forms = [
   "BROADCASTING STANDARDS",
