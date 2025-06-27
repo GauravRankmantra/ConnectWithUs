@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import bg from "../assets/images/associatebg.jpg";
+import { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 import {
   Form,
@@ -27,27 +30,88 @@ const { Option } = Select;
 const MediaMemberForm = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [signatureImage, setSignatureImage] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const validateForm = (values) => {
+    const requiredFields = [
+      "name",
+      "email",
+      "streetAddress",
+      "city",
+      "state",
+      "zip",
+      "country",
+      "phone",
+      
+     
+    ];
+
+    for (const field of requiredFields) {
+      if (!values[field]) {
+        toast.error(`Please fill in ${field}`);
+        return false;
+      }
+    }
+
+
+    return true;
+  };
 
   const onFinish = async (values) => {
-    console.log(values);
-    setLoading(true);
-    // try {
-    //   const response = await emailjs.send(
-    //     "YOUR_SERVICE_ID",
-    //     "YOUR_TEMPLATE_ID",
-    //     "YOUR_USER_ID"
-    //   );
+    if (!validateForm(values)) {
+      return;
+    }
 
-    //   console.log("SUCCESS!", response.status, response.text);
-    //   message.success("Application submitted successfully!");
-    //   form.resetFields();
-    //   setBroadcastedBefore(false);
-    // } catch (err) {
-    //   console.error("FAILED...", err);
-    //   message.error("Failed to submit application. Please try again.");
-    // } finally {
-    //   setLoading(false);
-    // }
+    setLoading(true);
+
+    try {
+      // Create FormData for file upload
+      const formData = new FormData();
+
+      // Add all form values to FormData
+      Object.keys(values).forEach((key) => {
+        if (key === "signature" && values[key]?.fileList?.[0]) {
+          // Handle signature file upload
+          formData.append("signature", values[key].fileList[0].originFileObj);
+        } else if (values[key] !== undefined && values[key] !== null) {
+          formData.append(key, values[key]);
+        }
+      });
+
+      // Add current date if not provided
+      if (!values.submissionDate) {
+        formData.append(
+          "submissionDate",
+          new Date().toISOString().split("T")[0]
+        );
+      }
+
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/media-member",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        toast.success("Application submitted successfully!");
+        setSubmitted(true);
+        form.resetFields();
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to submit application. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -110,7 +174,9 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="name"
                     label="Name"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true, message: "This field is required!" },
+                    ]}
                   >
                     <Input placeholder="Your full name" />
                   </Form.Item>
@@ -119,7 +185,13 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="email"
                     label="Email Address"
-                    rules={[{ required: true, type: "email" }]}
+                    rules={[
+                      {
+                        required: true,
+                        type: "email",
+                        message: "This field is required!",
+                      },
+                    ]}
                   >
                     <Input placeholder="your@email.com" />
                   </Form.Item>
@@ -129,7 +201,7 @@ const MediaMemberForm = () => {
               <Form.Item
                 name="streetAddress"
                 label="Street Address"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input placeholder="Eg. 42 Wallaby Way" />
               </Form.Item>
@@ -143,7 +215,9 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="city"
                     label="City"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true, message: "This field is required!" },
+                    ]}
                   >
                     <Input placeholder="Eg. Sydney" />
                   </Form.Item>
@@ -152,7 +226,9 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="state"
                     label="State/Province"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true, message: "This field is required!" },
+                    ]}
                   >
                     <Input placeholder="Eg. New South Wales" />
                   </Form.Item>
@@ -164,7 +240,9 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="zip"
                     label="ZIP / Postal Code"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true, message: "This field is required!" },
+                    ]}
                   >
                     <Input placeholder="Eg. 2000" />
                   </Form.Item>
@@ -173,7 +251,9 @@ const MediaMemberForm = () => {
                   <Form.Item
                     name="country"
                     label="Country"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true, message: "This field is required!" },
+                    ]}
                   >
                     <Select showSearch placeholder="Select a country">
                       <Option value="USA">United States</Option>
@@ -204,37 +284,58 @@ const MediaMemberForm = () => {
                 </Col>
               </Row>
 
-              <Form.Item name="phone" label="Phone Number">
+              <Form.Item
+                name="phone"
+                label="Phone Number"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="church" label="Name Of Church Or Ministry">
+              <Form.Item
+                name="church"
+                label="Name Of Church Or Ministry"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="address"
                 label="Address"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="website" label="Website">
+              <Form.Item
+                name="website"
+                label="Website"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input placeholder="https://www.example.com" />
               </Form.Item>
 
-              <Form.Item name="denomination" label="Denomination">
+              <Form.Item
+                name="denomination"
+                label="Denomination"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="position" label="Your Position">
+              <Form.Item
+                name="position"
+                label="Your Position"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="mediaDepartment"
                 label="Do you have a media department?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
@@ -242,6 +343,7 @@ const MediaMemberForm = () => {
               <Form.Item
                 name="mediaDirector"
                 label="Who's your media Director?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
@@ -249,6 +351,7 @@ const MediaMemberForm = () => {
               <Form.Item
                 name="preferredPlatform"
                 label="Which media platform do you prefer?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
@@ -256,6 +359,7 @@ const MediaMemberForm = () => {
               <Form.Item
                 name="contentCreator"
                 label="Who's responsible for your content creation?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
@@ -263,26 +367,40 @@ const MediaMemberForm = () => {
               <Form.Item
                 name="broadcastBefore"
                 label="Have you ever broadcast before?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="mediaCompany" label="If so, what media company?">
+              <Form.Item
+                name="mediaCompany"
+                label="If so, what media company?"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="demo" label="Can you provide a demo?">
+              <Form.Item
+                name="demo"
+                label="Can you provide a demo?"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input />
               </Form.Item>
 
               <Form.Item
                 name="broadcastingStandards"
                 label="Have you thoroughly read and understood our broadcasting standards?"
+                rules={[{ required: true, message: "This field is required!" }]}
               >
                 <Input />
               </Form.Item>
 
-              <Form.Item name="message" label="Message">
+              <Form.Item
+                name="message"
+                label="Message"
+                rules={[{ required: true, message: "This field is required!" }]}
+              >
                 <Input.TextArea
                   rows={4}
                   maxLength={180}
@@ -290,11 +408,27 @@ const MediaMemberForm = () => {
                 />
               </Form.Item>
 
-              <Form.Item name="signature" label="Upload your signature here">
-                <Upload beforeUpload={() => false} maxCount={1}>
-                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
-                </Upload>
-              </Form.Item>
+              <Col xs={24}>
+                <Form.Item
+                  name="signature"
+                  label="Upload Signature"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please upload your signature!",
+                    },
+                  ]}
+                >
+                  <Upload
+                    beforeUpload={() => false}
+                    accept="image/*"
+                    maxCount={1}
+                    listType="picture"
+                  >
+                    <Button icon={<UploadOutlined />}>Upload Signature</Button>
+                  </Upload>
+                </Form.Item>
+              </Col>
               <h1 className="text-white mb-2">
                 Please sign this statement : By signing this application page
                 you agree that you understand and comply with all of the terms
@@ -360,6 +494,8 @@ const MediaMemberForm = () => {
         </h1>
         <img className="w-6/12 mx-auto" src={qr}></img>
       </div>
+
+      <Toaster position="top-right" />
     </div>
   );
 };

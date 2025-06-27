@@ -20,6 +20,7 @@ import Reach10 from "./pages/Reach10";
 import TaponMediaKit from "./pages/TaponMediaKit";
 import TaponRateCard from "./pages/TaponRateCard";
 import CoverageMap from "./pages/CoverageMap";
+import GaryKirkwoodMinistriesFormMain from "./pages/GaryKirkwoodMinistriesFormMain";
 
 function App() {
   return (
@@ -65,6 +66,11 @@ function App() {
         path="/meeting-or-personal-ministry-request"
         element={<MinistryRequestForm />}
       />
+            <Route
+        path="/meeting-request-form-page"
+        element={<GaryKirkwoodMinistriesFormMain />}
+      />
+
       <Route path="/reach1070c-f-partner" element={<Reach10 />} />
     </Routes>
   );

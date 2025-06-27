@@ -5,6 +5,7 @@ import { Pagination, Navigation, Autoplay, EffectFade } from "swiper/modules";
 import img1 from "../assets/images/hero1.jpg";
 import img2 from "../assets/images/hero2.jpg";
 import FellowshipMinistries from "../components/FellowshipMinistries";
+import GoogleCalendar from "../components/GoogleCalendar";
 
 function Home() {
   const slides = [
@@ -189,6 +190,10 @@ function Home() {
       </div>
 
       <FellowshipMinistries/>
+
+      <div className="mt-10">
+        <GoogleCalendar/>
+      </div>
     </>
   );
 }
