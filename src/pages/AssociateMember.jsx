@@ -29,12 +29,11 @@ const AssociateMember = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const onFinish = async (values) => {
- 
     setLoading(true);
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/associate-member",
+        "https://connectbackend-sol8.onrender.com/api/v1/associate-member",
         values
       );
 

@@ -43,8 +43,6 @@ const MediaMemberForm = () => {
       "zip",
       "country",
       "phone",
-      
-     
     ];
 
     for (const field of requiredFields) {
@@ -53,7 +51,6 @@ const MediaMemberForm = () => {
         return false;
       }
     }
-
 
     return true;
   };
@@ -88,7 +85,7 @@ const MediaMemberForm = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/v1/media-member",
+        "https://connectbackend-sol8.onrender.com/api/v1/media-member",
         formData,
         {
           headers: {

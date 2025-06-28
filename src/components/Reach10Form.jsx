@@ -301,7 +301,7 @@ const Reach10Form = () => {
       });
 
       const response = await axios.post(
-        "http://localhost:5000/api/v1/partner-card",
+        "https://connectbackend-sol8.onrender.com/api/v1/partner-card",
         cleanedValues,
         {
           headers: {
@@ -489,7 +489,6 @@ const Reach10Form = () => {
                 label="Phone Number"
                 rules={[
                   { required: true, message: "Please enter your phone number" },
-                  
                 ]}
               >
                 <Input />

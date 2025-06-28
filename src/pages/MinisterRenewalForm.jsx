@@ -34,7 +34,7 @@ const MinisterRenewalForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/minister-renewal",
+        "https://connectbackend-sol8.onrender.com/api/v1/minister-renewal",
         values
       );
 
@@ -53,7 +53,7 @@ const MinisterRenewalForm = () => {
 
   return (
     <div className="relative bg-cover bg-center min-h-screen pb-10 ">
-        <Toaster position="top-right" />
+      <Toaster position="top-right" />
       <div
         style={{
           backgroundImage: `url(${bg})`,

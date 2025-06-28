@@ -73,7 +73,7 @@ const MinistryRequestForm = () => {
       cleanedValues.formType = "ministry-request";
 
       const response = await axios.post(
-        "http://localhost:5000/api/v1/meeting-or-personal-ministry-request",
+        "https://connectbackend-sol8.onrender.com/api/v1/meeting-or-personal-ministry-request",
         cleanedValues,
         {
           headers: {
@@ -235,7 +235,6 @@ const MinistryRequestForm = () => {
                 label="Contact Phone"
                 rules={[
                   { required: true, message: "Please enter your phone number" },
-                  
                 ]}
               >
                 <Input />

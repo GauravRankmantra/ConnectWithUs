@@ -97,7 +97,7 @@ const EventAttendanceForm = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/v1/event-attendance-registration-verification-form",
+        "https://connectbackend-sol8.onrender.com/api/v1/event-attendance-registration-verification-form",
         formData,
         {
           headers: {
@@ -271,10 +271,7 @@ const EventAttendanceForm = () => {
               <Form.Item
                 name="dayPhone"
                 label="Day Time Phone Number"
-                rules={[
-                  { required: true, message: "Day phone is required" }
-              
-                ]}
+                rules={[{ required: true, message: "Day phone is required" }]}
               >
                 <Input />
               </Form.Item>
