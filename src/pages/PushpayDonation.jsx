@@ -31,7 +31,8 @@ const PushpayDonation = () => {
           {" "}
           {/* Added relative and z-20 */}
           <Link
-            to={"/"}
+            to={"https://pushpay.com/pay/nfcocc"}
+            target="_blank"
             className="text-lg   text-white text-center font-thin bg-yellow-500 rounded-xl  px-4 py-3"
           >
             Online Donation
@@ -59,7 +60,8 @@ const PushpayDonation = () => {
           {/* Donate Button Section */}
           <div className="flex flex-col items-center justify-center">
             <Link
-              to="/"
+              to="https://pushpay.com/pay/nfcocc"
+              target="_blank"
               className="px-6 py-4 bg-black text-white rounded-sm hover:bg-gray-800 transition"
             >
               Donate Now

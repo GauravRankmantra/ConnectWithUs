@@ -17,7 +17,7 @@ const ministries = [
   },
   { img: tapon, alt: "Tapon", link: "/tapon-form-page" },
   { img: kirkwood, alt: "Gary Kirkwood Ministries", link: "/meeting-request-form-page" },
-  { img: aagba, alt: "AAGBA", link: "/form-section" },
+  { img: aagba, alt: "AAGBA", link: "/" },
   { img: reach, alt: "REACH 1070 Partner", link: "/reach1070c-f-partner" },
 ];
 
