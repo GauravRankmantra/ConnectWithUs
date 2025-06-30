@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create axios instance with base configuration
 const apiUrl = import.meta.env.VITE_API_URL;
-console.log(`apiUrl: ${apiUrl}`);
+
 const api = axios.create({
   baseURL: apiUrl,
   timeout: 10000,
@@ -550,7 +550,7 @@ export const apiService = {
           const transformedData = transformBenevolentRequestsData(
             response.data.data
           );
-          console.log(transformedData);
+          
           return { data: transformedData, success: true };
         } else {
           return { data: [], success: false, error: "Failed to fetch data" };

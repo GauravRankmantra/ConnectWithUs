@@ -3,7 +3,7 @@ import { Upload, Button, Form, Typography, message } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import emailjs from "@emailjs/browser";
 import bg from "../assets/images/associatebg.jpg";
-import background from "../assets/images/background.png"
+import background from "../assets/images/background.png";
 import { Link } from "react-router-dom";
 
 const { Title, Paragraph, Text } = Typography;
@@ -12,20 +12,20 @@ const { Dragger } = Upload;
 const TaponBroadcastStandards = () => {
   const [form] = Form.useForm();
 
-//   const uploadProps = {
-//     name: "file",
-//     multiple: false,
-//     accept: ".png,.jpg,.jpeg,.pdf",
-//     action: "/api/upload-signature", 
-//     onChange(info) {
-//       const { status } = info.file;
-//       if (status === "done") {
-//         message.success(`${info.file.name} uploaded successfully.`);
-//       } else if (status === "error") {
-//         message.error(`${info.file.name} upload failed.`);
-//       }
-//     },
-//   };
+  //   const uploadProps = {
+  //     name: "file",
+  //     multiple: false,
+  //     accept: ".png,.jpg,.jpeg,.pdf",
+  //     action: "/api/upload-signature",
+  //     onChange(info) {
+  //       const { status } = info.file;
+  //       if (status === "done") {
+  //         message.success(`${info.file.name} uploaded successfully.`);
+  //       } else if (status === "error") {
+  //         message.error(`${info.file.name} upload failed.`);
+  //       }
+  //     },
+  //   };
 
   const onFinish = (values) => {
     console.log("Form Submitted:", values);
@@ -60,9 +60,9 @@ const TaponBroadcastStandards = () => {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             class="text-white"
           >
             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
@@ -79,18 +79,25 @@ const TaponBroadcastStandards = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-12">
-
-
-        <div style={{backgroundImage:`url(${background})`,backgroundPosition:`top left`}} className=" py-10 md:py-20">
-
-       
-        <Title level={3} className="text-center">
-          TAPON RADIO BROADCAST STANDARDS AND TAPON APPLICANT REQUIREMENTS
-        </Title>
-
+        <div
+          style={{
+            backgroundImage: `url(${background})`,
+            backgroundPosition: `top left`,
+          }}
+          className=" py-10 md:py-20"
+        >
+          <Title level={3} className="text-center">
+            TAPON RADIO BROADCAST STANDARDS AND TAPON APPLICANT REQUIREMENTS
+          </Title>
         </div>
 
-        <div className="text-sm space-y-1 md:my-8" style={{backgroundImage:`url(${background})`,backgroundPosition:`top right`}}>
+        <div
+          className="text-sm space-y-1 md:my-8"
+          style={{
+            backgroundImage: `url(${background})`,
+            backgroundPosition: `top right`,
+          }}
+        >
           <ol className="list-decimal space-y-5 text-lg font-thin ml-6 text-gray-700">
             <li>
               All programs must be presented in mp3 format; no less than 128
@@ -157,7 +164,7 @@ const TaponBroadcastStandards = () => {
             ]}
           >
             {/* <Dragger {...uploadProps}> */}
-             <Dragger>
+            <Dragger>
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />
               </p>
