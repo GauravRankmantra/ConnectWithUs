@@ -68,9 +68,9 @@ const DataTable = ({ data, columns, onViewDetails, loading }) => {
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
-            <tr>
+            <tr  >
               {columns.map((column) => (
-                <th
+                <th 
                   key={column.key}
                   onClick={() => column.sortable && handleSort(column.key)}
                   className={`px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider ${
@@ -94,9 +94,9 @@ const DataTable = ({ data, columns, onViewDetails, loading }) => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {sortedData.map((row, index) => (
-              <tr 
+              <tr onClick={() => onViewDetails(row)}
                 key={row.id || index} 
-                className="table-row-hover"
+                className="table-row-hover cursor-pointer"
               >
                 {columns.map((column) => (
                   <td key={column.key} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
