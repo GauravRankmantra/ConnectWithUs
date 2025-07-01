@@ -60,8 +60,8 @@ const PushpayDonation = () => {
           {/* Donate Button Section */}
           <div className="flex flex-col items-center justify-center">
             <Link
-              to="https://pushpay.com/pay/nfcocc"
-              target="_blank"
+              to="/donate"
+             
               className="px-6 py-4 bg-black text-white rounded-sm hover:bg-gray-800 transition"
             >
               Donate Now
